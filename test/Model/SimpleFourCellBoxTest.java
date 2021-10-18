@@ -52,7 +52,7 @@ public class SimpleFourCellBoxTest
     void check_cell_area_in_simple_box() throws InstantiationException, IllegalAccessException {
         List<Cell> cells = Builder.getSimpleFourCellBox();
         for (Cell cell: cells){
-            assertEquals(50000, cell.getArea());
+            assertEquals(40000, cell.getArea());
         }
     }
 

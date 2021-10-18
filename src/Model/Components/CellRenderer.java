@@ -42,6 +42,7 @@ public class CellRenderer extends Component implements IRender, IColor
                 ((IColor) edge).setColor(color);
             }
         }
+
     }
 
     @Override

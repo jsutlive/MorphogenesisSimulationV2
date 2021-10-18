@@ -127,30 +127,47 @@ public class Builder {
 
 
     public static Cell createCell(List<Edge> sideA, List<Edge> sideB, Class cellClass) throws InstantiationException, IllegalAccessException {
+
         // Get vertices from edge segments, which make up the lateral edges
         List<Node> nodes = new ArrayList<>();
         List<Edge> edges = new ArrayList<>();
-        sideB = reverse(sideB);
-        nodes.addAll(addVerticesFromEdgeList(sideB));
-        nodes.addAll(addVerticesFromEdgeList(sideA));
+        List<Edge> sideBr = reverse(sideB);
+        List<Edge> sideAf = sideA; //sideAf.get(0).flip();
+        //sideBr.get(0).flip();
+        nodes.addAll(addVerticesFromEdgeList(sideBr, true));
+        nodes.addAll(addVerticesFromEdgeList(sideAf, false));
+        for (Node node:nodes
+             ) {
+            System.out.println(node.getPosition().x +"::"+ node.getPosition().y);
 
-        edges.addAll(sideA);
+        }
+        edges.addAll(sideAf);
 
-        edges.addAll(reverse(sideB));
-
+        edges.addAll(sideBr);
+        for(Edge edge: sideAf){
+            System.out.println("POS: " + edge.getPositions()[0].x + "," + edge.getPositions()[0].y + "::"
+                    + edge.getPositions()[1].x + "," + edge.getPositions()[1].y);
+        }
+        System.out.println("B");
+        for(Edge edge: sideBr){
+            System.out.println("POS: " + edge.getPositions()[0].x + "," + edge.getPositions()[0].y + "::"
+                    + edge.getPositions()[1].x + "," + edge.getPositions()[1].y);
+        }
         // Create internal lattice:
-        //  0   0
-        //  1   1
+        //  0   4
+        //  1   3
         //  2   2
-        //  3   3
-        //  4   4
+        //  3   1
+        //  4   0
         Edge edgeA;
         Edge edgeB;
         List<Edge> internalEdges = new ArrayList<>();
+        int n = 4;
+
         for(int i = 0; i < sideA.size(); i++)
         {
-            edgeA = sideA.get(i);
-            edgeB = sideB.get(i);
+            edgeA = sideAf.get(i);
+            edgeB = sideBr.get(n - 1 - i);
             Node a = edgeA.getNodes()[0];
             Node b = edgeA.getNodes()[1];
             Node c = edgeB.getNodes()[0];
@@ -161,16 +178,17 @@ public class Builder {
         }
 
         // Create the apical edges of the cell
-        Node apicalA = sideA.get(0).getNodes()[0];
-        Node apicalB = sideB.get(0).getNodes()[0];
-        Edge apicalEdge = new ApicalEdge(apicalA, apicalB);
+        //Node apicalA = nodes.get(1);
+        //Node apicalB = nodes.get(9);
+        Node apicalA = sideAf.get(n-1).getNodes()[1];
+        Node apicalB = sideBr.get(0).getNodes()[1];
+        Edge apicalEdge = new BasalEdge(apicalA, apicalB);
         edges.add(apicalEdge);
 
         // Create the basal edges of the cell
-        int n = 4;
-        Node basalB = sideA.get(0).getNodes()[1];
-        Node basalA = sideB.get(0).getNodes()[1];
-        Edge basalEdge = new BasalEdge(basalA, basalB);
+        Node basalB = sideAf.get(0).getNodes()[0];
+        Node basalA = sideBr.get(n-1).getNodes()[0];
+        Edge basalEdge = new ApicalEdge(basalA, basalB);
         edges.add(basalEdge);
 
         // compile and create the cell object
@@ -187,18 +205,33 @@ public class Builder {
         List<Edge> c = new ArrayList<>();
         int len = sideB.size();
         for(int i = 0; i < len; i++){
-            c.add(sideB.get(len - i - 1));
+            Edge e = sideB.get(len - i - 1);
+            //e.flip();
+            c.add(e);
         }
         return c;
     }
 
-    private static List<Node> addVerticesFromEdgeList(List<Edge> edgeList) {
+    private static List<Node> addVerticesFromEdgeList(List<Edge> edgeList, boolean reversed) {
         List<Node> vertices = new ArrayList<>();
-        for (Edge edge: edgeList)
+        Node[] vtxArray = new Node[2];
+        int len = edgeList.size();
+        if(reversed) {
+            vtxArray = edgeList.get(0).getNodes();
+                vertices.add(vtxArray[1]);
+        }
+        for (int i = 0; i < len; i++)
         {
-            Node[] vtxArray = edge.getNodes();
-            vertices.add(vtxArray[0]);
-            vertices.add(vtxArray[1]);
+             vtxArray = edgeList.get(i).getNodes();
+
+            if (!vertices.contains(vtxArray[0])) {
+                vertices.add(vtxArray[0]);
+            }
+        }
+        if(!reversed) {
+            if (!vertices.contains(vtxArray[1])) {
+                vertices.add(vtxArray[1]);
+            }
         }
         return vertices;
     }

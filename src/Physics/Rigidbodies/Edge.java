@@ -1,6 +1,7 @@
 package Physics.Rigidbodies;
 
 import GUI.IColor;
+import GUI.Painter;
 import Utilities.Geometry.Vector2f;
 import Utilities.Math.CustomMath;
 
@@ -13,7 +14,7 @@ import java.awt.*;
  */
 public abstract class Edge implements IRigidbody, IColor
 {
-    protected Color color;
+    protected Color color = Painter.DEFAULT_COLOR;
     protected Node[] nodes = new Node[2];
     protected float initialLength;
     protected float elasticConstant;
@@ -31,6 +32,13 @@ public abstract class Edge implements IRigidbody, IColor
     @Override
     public void AddForceVector(Vector2f forceVector) {
         for(Node node: nodes) node.AddForceVector(forceVector);
+    }
+
+    public void flip()
+    {
+        Node temp = nodes[0];
+        nodes[0] = nodes[1];
+        nodes[1] = temp;
     }
 
     protected void MakeNewEdge(Node a, Node b)
@@ -100,6 +108,7 @@ public abstract class Edge implements IRigidbody, IColor
             }
         }
         this.color = color;
+        System.out.println(color);
     }
 
     public void constrict(float constant, float ratio)

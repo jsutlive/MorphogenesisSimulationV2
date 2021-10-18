@@ -24,12 +24,12 @@ public class Cell extends MonoBehavior {
     private float restingArea;
 
     float constant = .45f;
-    float ratio = 0.00000001f;
+    float ratio = 0.01f;
 
     float elasticConstant = .12f;
     float elasticRatio = 1f;
 
-    float internalConstant = .5f;
+    float internalConstant = .2f;
 
     public List<Edge> getEdges(){
         return edges;
@@ -40,6 +40,7 @@ public class Cell extends MonoBehavior {
     }
 
     public void setInternalEdges(List<Edge> edges) {this.internalEdges = edges;}
+    public List<Edge> getInternalEdges( ) {return internalEdges;}
 
     public void setNodes(List<Node> nodes){
         this.nodes = nodes;
