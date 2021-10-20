@@ -13,6 +13,9 @@ public class LateralEdge extends Edge{
     public LateralEdge(Node a, Node b)
     {
         MakeNewEdge(a,b);
-        elasticConstant = .12f;
+        elasticConstant = .35f;
+    }
+    public static LateralEdge clone(LateralEdge edge){
+        return new LateralEdge(edge.getNodes()[0], edge.getNodes()[1]);
     }
 }

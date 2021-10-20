@@ -16,8 +16,8 @@ public class ApicalConstrictingCell extends Cell
     }
 
     @Override
-    public void setEdges(List<Edge> edges){
-        super.setEdges(edges);
+    public void setColor(Color color){
+        super.setColor(color);
         for(Edge edge: edges){
             if(edge instanceof ApicalEdge) edge.setColor(Color.RED);
             if(edge instanceof BasalEdge) edge.setColor(Color.BLUE);
@@ -25,12 +25,19 @@ public class ApicalConstrictingCell extends Cell
     }
     @Override
     public void update() {
+        //System.out.println(edges.size());
+
         for(Edge edge: edges)
         {
-            edge.constrict(edge.getElasticConstant(), elasticRatio);
             if(edge instanceof ApicalEdge)
             {
-                edge.constrict(constant * (1 - getRingLocation()/40), ratio);
+                //edge.constrict(constant * (1 - getRingLocation()/40), ratio);
+                edge.constrict(constant , ratio);
+                //System.out.println(edge.getInitialLength());
+            }
+            else
+            {
+                edge.constrict(edge.getElasticConstant(), elasticRatio);
             }
         }
         for(Edge edge: internalEdges) edge.constrict(internalConstant, elasticRatio);

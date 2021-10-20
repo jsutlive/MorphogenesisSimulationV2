@@ -1,5 +1,7 @@
 package Utilities.Geometry;
 
+import Utilities.Math.CustomMath;
+
 public class Vector2f
 {
     public float x;
@@ -73,6 +75,12 @@ public class Vector2f
 
     public static float dist(Vector2f a, Vector2f b){
         return (float)Math.hypot(b.x -a.x, b.y - a.y);
+    }
+
+    public static Vector2f center(Vector2f a, Vector2f b){
+        float xAvg = CustomMath.avg(a.x, b.x);
+        float yAvg = CustomMath.avg(a.y, b.y);
+        return new Vector2f(xAvg, yAvg);
     }
 
 }

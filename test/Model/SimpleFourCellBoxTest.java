@@ -1,9 +1,11 @@
 package Model;
 
 import Model.Organisms.SimpleFourCell;
+import Model.Organisms.SimpleFourCellBox;
 import Physics.Rigidbodies.ApicalEdge;
 import Physics.Rigidbodies.Edge;
 import Physics.Rigidbodies.Node;
+import Utilities.Geometry.Vector2f;
 import Utilities.Math.CustomMath;
 import Utilities.Model.Builder;
 import org.junit.jupiter.api.Test;
@@ -53,6 +55,20 @@ public class SimpleFourCellBoxTest
         List<Cell> cells = Builder.getSimpleFourCellBox();
         for (Cell cell: cells){
             assertEquals(40000, cell.getArea());
+        }
+    }
+
+    @Test
+    void calculate_normal_simple_box() throws InstantiationException, IllegalAccessException{
+        List<Cell> cells = Builder.getSimpleFourCellBox();
+        Cell test = cells.get(0);
+        for(Edge edge: test.edges){
+            if(edge instanceof ApicalEdge)
+            {
+                Vector2f normal = edge.getNormal();
+                assertEquals(0, normal.x);
+                assertEquals(1, normal.y);
+            }
         }
     }
 

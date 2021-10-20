@@ -136,15 +136,15 @@ public class Builder {
         //sideBr.get(0).flip();
         nodes.addAll(addVerticesFromEdgeList(sideBr, true));
         nodes.addAll(addVerticesFromEdgeList(sideAf, false));
-        for (Node node:nodes
+        /*for (Node node:nodes
              ) {
             System.out.println(node.getPosition().x +"::"+ node.getPosition().y);
 
-        }
+        }*/
         edges.addAll(sideAf);
 
         edges.addAll(sideBr);
-        for(Edge edge: sideAf){
+        /*for(Edge edge: sideAf){
             System.out.println("POS: " + edge.getPositions()[0].x + "," + edge.getPositions()[0].y + "::"
                     + edge.getPositions()[1].x + "," + edge.getPositions()[1].y);
         }
@@ -152,7 +152,7 @@ public class Builder {
         for(Edge edge: sideBr){
             System.out.println("POS: " + edge.getPositions()[0].x + "," + edge.getPositions()[0].y + "::"
                     + edge.getPositions()[1].x + "," + edge.getPositions()[1].y);
-        }
+        }*/
         // Create internal lattice:
         //  0   4
         //  1   3
@@ -235,5 +235,13 @@ public class Builder {
         }
         return vertices;
     }
+
+    /*private List<Edge> clone(List<Edge> edges){
+        List<Edge> e = new ArrayList<>();
+        for(Edge edge: edges){
+            if(edge instanceof BasicEdge) e.add(BasicEdge.clone());
+        }
+        return e;
+    }*/
 
 }

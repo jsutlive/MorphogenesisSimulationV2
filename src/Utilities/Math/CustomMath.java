@@ -47,6 +47,12 @@ public class CustomMath {
         return sum/len;
     }
 
+    public static float avg(float a, float b)
+    {
+        float sum = a+b;
+        return sum/2f;
+    }
+
     public static float round(float val, float places)
     {
         double scale = Math.pow(10, places);

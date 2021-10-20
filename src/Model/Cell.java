@@ -36,6 +36,9 @@ public class Cell extends MonoBehavior {
     }
 
     public void setEdges(List<Edge> edges){
+        for (Edge edge: edges) {
+            edge.calculateNormal();
+        }
         this.edges = edges;
     }
 
@@ -87,6 +90,12 @@ public class Cell extends MonoBehavior {
         for(Node node: nodes)
         {
             node.Move();
+        }
+    }
+
+    public void drawNormals(){
+        for (Edge edge: edges){
+            edge.drawNormal();
         }
     }
 

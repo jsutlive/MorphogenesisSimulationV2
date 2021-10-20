@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Organisms.SimpleFourCell;
+import Model.Organisms.SimpleFourCellBox;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,5 +40,7 @@ public class SimpleFourCellTest
         model.generateOrganism();
         assertEquals(25, model.getAllNodes().size());
     }
+
+
 
 }

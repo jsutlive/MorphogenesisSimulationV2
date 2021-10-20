@@ -48,6 +48,7 @@ public class CellRenderer extends Component implements IRender, IColor
     @Override
     public void render()
     {
+        //cell.drawNormals();
         Painter.drawCell(cell);
     }
 }

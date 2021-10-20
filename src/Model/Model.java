@@ -43,6 +43,7 @@ public class Model extends MonoBehavior
     @Override
     public void update()
     {
+
         Edge e;
         float maxRadius = 5f;
         float ljConstant = 5.6f;
@@ -60,7 +61,15 @@ public class Model extends MonoBehavior
                 }
             }
         }
+        int count = 0;
+        for(Cell cell: organism.getAllCells()){
+            if(cell instanceof ApicalConstrictingCell){
+                count++;
+            }
+        }
+
         for(Cell cell: organism.getAllCells()) cell.update();
+        System.out.println(organism.getAllCells().get(0).getNodes().get(5).getResultantForce().x);
     }
 
     /**

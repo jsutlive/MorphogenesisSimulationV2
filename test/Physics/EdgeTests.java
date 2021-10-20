@@ -65,4 +65,25 @@ public class EdgeTests
         float dist = Vector2f.dist(aVec, bVec);
         assertEquals(5,dist);
     }
+
+    @Test
+    void calculate_center(){
+        Node a = new Node(new Vector2f(0));
+        Node b = new Node(new Vector2f(2));
+        Vector2f center = Vector2f.center(a.getPosition(), b.getPosition());
+        assertEquals(1, center.x);
+        assertEquals(1, center.y);
+    }
+
+    @Test
+    void calculate_edge_normal(){
+        Node a = new Node(new Vector2f(0));
+        Node b = new Node(new Vector2f(0,2));
+        Edge e = new BasicEdge(a, b);
+        e.calculateNormal();
+        Vector2f center = Vector2f.center(a.getPosition(), b.getPosition());
+        Vector2f norm = e.getNormalWorldSpace(center);
+        assertEquals(1, norm.x);
+        assertEquals(1, norm.y);
+    }
 }

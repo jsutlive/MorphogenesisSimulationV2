@@ -18,7 +18,7 @@ public abstract class Edge implements IRigidbody, IColor
     protected Node[] nodes = new Node[2];
     protected float initialLength;
     protected float elasticConstant;
-    protected Vector2f normal;
+    protected Vector2f normal = new Vector2f(0);
 
     public float getElasticConstant()
     {
@@ -70,6 +70,37 @@ public abstract class Edge implements IRigidbody, IColor
 
     }
 
+    public Vector2f getNormal(){
+        return normal;
+    }
+
+    public void calculateNormal(){
+        normal = CustomMath.normal(this);
+
+    }
+
+    public float getInitialLength(){
+        return initialLength;
+    }
+
+    public void drawNormal(){
+
+        Vector2f center = Vector2f.center(nodes[0].getPosition(), nodes[1].getPosition());
+        Vector2f norm = getNormalWorldSpace(center);
+        System.out.println("NORMAL: " + norm.x + "," + norm.y);
+        System.out.println("CENTER: " + center.x + "," + center.y);
+        Painter.drawLine(center.asInt(), norm.asInt(), Color.GREEN);
+    }
+
+        public Vector2f getNormalWorldSpace(Vector2f center){
+        Vector2f norm = normal;
+        System.out.println("NORMAL: " + norm.x + "," + norm.y);
+
+        //norm.mul(10);
+        norm.add(center);
+        return norm;
+    }
+
     @Override
     public void Move() {
 
@@ -108,7 +139,6 @@ public abstract class Edge implements IRigidbody, IColor
             }
         }
         this.color = color;
-        System.out.println(color);
     }
 
     public void constrict(float constant, float ratio)

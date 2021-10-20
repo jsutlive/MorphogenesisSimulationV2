@@ -7,6 +7,9 @@ public class ApicalEdge extends Edge{
     public ApicalEdge(Node a, Node b)
     {
         MakeNewEdge(a,b);
-        elasticConstant = .12f;
+        elasticConstant = .02f;
+    }
+    public static ApicalEdge clone(ApicalEdge edge){
+        return new ApicalEdge(edge.getNodes()[0], edge.getNodes()[1]);
     }
 }
