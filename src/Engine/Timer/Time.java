@@ -2,6 +2,7 @@ package Engine.Timer;
 
 public class Time {
     public static final int fps = 60;
+    public static final long fixedDeltaTime = 1/20;
     public static long time;
     public static long deltaTime;
 

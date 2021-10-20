@@ -150,5 +150,9 @@ public abstract class Edge implements IRigidbody, IColor
 
         forceVector.mul(-1);
         nodes[1].AddForceVector(forceVector);
+
+        if(this instanceof ApicalEdge){
+            System.out.println("FORCE: " + forceVector.x + "," + forceVector.y);
+        }
     }
 }

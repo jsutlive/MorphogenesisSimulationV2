@@ -26,20 +26,23 @@ public class ApicalConstrictingCell extends Cell
     @Override
     public void update() {
         //System.out.println(edges.size());
-
+        int count = 0;
         for(Edge edge: edges)
         {
             if(edge instanceof ApicalEdge)
             {
+                count++;
                 //edge.constrict(constant * (1 - getRingLocation()/40), ratio);
                 edge.constrict(constant , ratio);
-                //System.out.println(edge.getInitialLength());
+
             }
             else
             {
                 edge.constrict(edge.getElasticConstant(), elasticRatio);
             }
+
         }
+        System.out.println("TOTAL: " + count);
         for(Edge edge: internalEdges) edge.constrict(internalConstant, elasticRatio);
         for(Node node: nodes)
         {

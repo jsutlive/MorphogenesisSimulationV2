@@ -28,7 +28,7 @@ public class Model extends MonoBehavior
      */
     @Override
     public void awake() throws InstantiationException, IllegalAccessException {
-        physicsSystem = (PhysicsSystem) State.findObjectWithTag(Tag.PHYSICS);
+        //physicsSystem = (PhysicsSystem) State.findObjectWithTag(Tag.PHYSICS);
         organism.generateOrganism();
     }
 
@@ -43,8 +43,8 @@ public class Model extends MonoBehavior
     @Override
     public void update()
     {
-
-        Edge e;
+        System.out.println("--------------");
+        /*Edge e;
         float maxRadius = 5f;
         float ljConstant = 5.6f;
         for(Node node: organism.getAllNodes())
@@ -68,8 +68,7 @@ public class Model extends MonoBehavior
             }
         }
 
-        for(Cell cell: organism.getAllCells()) cell.update();
-        System.out.println(organism.getAllCells().get(0).getNodes().get(5).getResultantForce().x);
+        //for(Cell cell: organism.getAllCells()) cell.update();*/
     }
 
     /**

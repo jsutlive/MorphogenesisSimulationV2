@@ -68,12 +68,12 @@ public class DrosophilaEmbryo implements  IOrganism {
                 Cell newCell;
 
                 if (i >=40) {
-                    if(i>=81) newCell = Builder.createCell(edges, oldEdges, ApicalConstrictingCell.class);
+                    if(i>=71) newCell = Builder.createCell(edges, oldEdges, ApicalConstrictingCell.class);
                     else newCell = Builder.createCell(edges, oldEdges, Cell.class);
                     newCell.setRingLocation(80 - (i - 1));
 
                 } else {
-                    if(i<=1)newCell = Builder.createCell(edges, oldEdges, ApicalConstrictingCell.class);
+                    if(i<=10)newCell = Builder.createCell(edges, oldEdges, ApicalConstrictingCell.class);
                     else newCell = Builder.createCell(edges, oldEdges, Cell.class);
                     newCell.setRingLocation(i);
                 }

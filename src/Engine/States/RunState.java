@@ -23,8 +23,9 @@ public class RunState extends State
      */
     @Override
     public void Init() throws InstantiationException, IllegalAccessException {
-        physicsSystem = State.create(PhysicsSystem.class);
+        //physicsSystem = State.create(PhysicsSystem.class);
         model = (Model)State.create(Model.class);
+        //model.start();
         for(MonoBehavior obj: allObjects){
             obj.start();
         }
@@ -37,7 +38,9 @@ public class RunState extends State
     public void Tick()
     {
         for (MonoBehavior obj: allObjects) {
-            obj.update();
+            if(obj!= model) {
+                obj.update();
+            }
         }
     }
 
@@ -49,6 +52,7 @@ public class RunState extends State
     @Override
     public void Render()
     {
+        System.out.println("OBJECTS UPDATING: " + allObjects.size());
         //System.out.println("FRAME " + count + ":");
         count++;
         for(CellRenderer rend: renderBatch)
