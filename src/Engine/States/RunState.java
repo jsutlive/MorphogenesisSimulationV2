@@ -25,7 +25,8 @@ public class RunState extends State
     public void Init() throws InstantiationException, IllegalAccessException {
         //physicsSystem = State.create(PhysicsSystem.class);
         model = (Model)State.create(Model.class);
-        //model.start();
+        allObjects.remove(model);
+        model.start();
         for(MonoBehavior obj: allObjects){
             obj.start();
         }
@@ -37,6 +38,7 @@ public class RunState extends State
     @Override
     public void Tick()
     {
+        model.update();
         for (MonoBehavior obj: allObjects) {
             if(obj!= model) {
                 obj.update();

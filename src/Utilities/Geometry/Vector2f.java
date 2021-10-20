@@ -63,6 +63,11 @@ public class Vector2f
         return new Vector2i(xi,yi);
     }
 
+    public String print()
+    {
+        return x + "," + y;
+    }
+
     public float greater()
     {
         return Math.max(x,y);

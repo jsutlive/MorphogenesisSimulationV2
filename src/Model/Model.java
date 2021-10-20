@@ -11,6 +11,8 @@ import Physics.Rigidbodies.Node;
 import Utilities.Geometry.Boundary;
 import Utilities.Geometry.Vector2f;
 
+import java.awt.*;
+
 public class Model extends MonoBehavior
 {
     //TODO: Add yolk conservation
@@ -30,6 +32,8 @@ public class Model extends MonoBehavior
     public void awake() throws InstantiationException, IllegalAccessException {
         //physicsSystem = (PhysicsSystem) State.findObjectWithTag(Tag.PHYSICS);
         organism.generateOrganism();
+        Node print = organism.getAllCells().get(0).getNodes().get(3);
+        print.printMe = true; print.setColor(Color.GREEN);
     }
 
 

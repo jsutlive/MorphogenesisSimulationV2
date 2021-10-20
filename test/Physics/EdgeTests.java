@@ -86,4 +86,22 @@ public class EdgeTests
         assertEquals(1, norm.x);
         assertEquals(1, norm.y);
     }
+
+    @Test
+    void ensure_constriction_equal_opposite_nodes(){
+        Node a = new Node(0,-1);
+        Node b = new Node(0,0);
+        Node c = new Node(0,1);
+
+        Edge A = new BasicEdge(a,b);
+        Edge B = new BasicEdge(b,c);
+
+        A.constrict(5,.1f);
+        B.constrict(5, .1f);
+
+        a.Move();b.Move();c.Move();
+        assertEquals(a.getPosition().x, c.getPosition().x);
+        assertEquals(Math.abs(a.getPosition().y), Math.abs(c.getPosition().y));
+        assertEquals(0, Math.abs(b.getPosition().y));
+    }
 }

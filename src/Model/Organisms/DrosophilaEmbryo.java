@@ -1,8 +1,6 @@
 package Model.Organisms;
 
 import Model.*;
-import Engine.Renderer;
-import Engine.States.State;
 import Physics.Rigidbodies.*;
 import Utilities.Geometry.Vector2f;
 import Utilities.Geometry.Vector2i;
@@ -10,7 +8,6 @@ import Utilities.Math.CustomMath;
 import Utilities.Model.Builder;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class DrosophilaEmbryo implements  IOrganism {
@@ -67,13 +64,13 @@ public class DrosophilaEmbryo implements  IOrganism {
             if (i > 0) {
                 Cell newCell;
 
-                if (i >=40) {
+                if (i >=80) {
                     if(i>=71) newCell = Builder.createCell(edges, oldEdges, ApicalConstrictingCell.class);
                     else newCell = Builder.createCell(edges, oldEdges, Cell.class);
                     newCell.setRingLocation(80 - (i - 1));
 
                 } else {
-                    if(i<=10)newCell = Builder.createCell(edges, oldEdges, ApicalConstrictingCell.class);
+                    if(i<=0)newCell = Builder.createCell(edges, oldEdges, ApicalConstrictingCell.class);
                     else newCell = Builder.createCell(edges, oldEdges, Cell.class);
                     newCell.setRingLocation(i);
                 }

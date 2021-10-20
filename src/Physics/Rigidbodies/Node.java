@@ -11,6 +11,7 @@ import java.awt.*;
  */
 public class Node implements IRigidbody, IColor {
 
+    public boolean printMe = false;
     private Vector2f position;
     private Vector2f resultantForce = new Vector2f(0);
     private Color color;
@@ -43,6 +44,7 @@ public class Node implements IRigidbody, IColor {
      */
     @Override
     public void AddForceVector(Vector2f forceVector) {
+        if(printMe) System.out.println("FORCE: " + forceVector.x + "," + forceVector.y);
         resultantForce.add(forceVector);
     }
 
@@ -60,6 +62,7 @@ public class Node implements IRigidbody, IColor {
      */
     @Override
     public void Move() {
+        if(printMe) System.out.println("MOVING NODE");
         position.add(resultantForce);
         resultantForce.x = 0; resultantForce.y = 0;
     }

@@ -83,14 +83,15 @@ public class Cell extends MonoBehavior {
         // Edges have multiple varieties. We can target specific edge types to apply unique forces to them,
         // modeling their role in the cell. For example, apical edges model the apical membrane of the early
         // embryo and how it constricts during ventral furrow formation.
-        for(Edge edge: edges) {
+        /*for(Edge edge: edges) {
             edge.constrict(edge.getElasticConstant(), elasticRatio);
         }
         for(Edge edge: internalEdges) edge.constrict(internalConstant, elasticRatio);
         for(Node node: nodes)
         {
+            if(node.printMe) System.out.println("Moving node from cell");
             node.Move();
-        }
+        }*/
     }
 
     public void drawNormals(){

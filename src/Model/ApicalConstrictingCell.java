@@ -42,10 +42,10 @@ public class ApicalConstrictingCell extends Cell
             }
 
         }
-        System.out.println("TOTAL: " + count);
         for(Edge edge: internalEdges) edge.constrict(internalConstant, elasticRatio);
         for(Node node: nodes)
         {
+            if(node.printMe) System.out.println("MOVING NODE FROM APICAL");
             node.Move();
         }
     }
