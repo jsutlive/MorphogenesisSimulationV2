@@ -236,6 +236,10 @@ public class Builder {
         return vertices;
     }
 
+    private static void buildCellAsEdgeMono(){
+
+    }
+
     /*private List<Edge> clone(List<Edge> edges){
         List<Edge> e = new ArrayList<>();
         for(Edge edge: edges){

@@ -3,7 +3,9 @@ package Engine.States;
 import Engine.Object.MonoBehavior;
 import GUI.Painter;
 import Model.Components.CellRenderer;
+import Model.Components.EdgeRenderer;
 import Model.Model;
+import Model.Schema.Schema;
 import Physics.PhysicsSystem;
 import Utilities.Geometry.Vector2i;
 
@@ -13,7 +15,8 @@ import java.awt.*;
 public class RunState extends State
 {
     int count = 1;
-    Model model;
+    //Model model;
+    Schema model;
     MonoBehavior physicsSystem;
 
     /**
@@ -24,7 +27,8 @@ public class RunState extends State
     @Override
     public void Init() throws InstantiationException, IllegalAccessException {
         //physicsSystem = State.create(PhysicsSystem.class);
-        model = (Model)State.create(Model.class);
+        //model = (Model)State.create(Model.class);
+        model = (Schema)State.create(Schema.class);
         allObjects.remove(model);
         model.start();
         for(MonoBehavior obj: allObjects){
@@ -57,7 +61,7 @@ public class RunState extends State
         System.out.println("OBJECTS UPDATING: " + allObjects.size());
         //System.out.println("FRAME " + count + ":");
         count++;
-        for(CellRenderer rend: renderBatch)
+        for(EdgeRenderer rend: renderBatch)
         {
             rend.render();
         }

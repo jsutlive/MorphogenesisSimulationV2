@@ -3,6 +3,7 @@ package Engine.States;
 import Engine.Object.MonoBehavior;
 import Engine.Object.Tag;
 import Model.Components.CellRenderer;
+import Model.Components.EdgeRenderer;
 
 import java.util.HashSet;
 
@@ -19,7 +20,7 @@ public abstract class State
     }
 
     protected static HashSet<MonoBehavior> allObjects = new HashSet<>();
-    protected static HashSet<CellRenderer> renderBatch = new HashSet<>();
+    protected static HashSet<EdgeRenderer> renderBatch = new HashSet<>();
 
     public static void ChangeState() throws InstantiationException, IllegalAccessException {
         RunState runState = (RunState)state;
@@ -73,7 +74,8 @@ public abstract class State
 
     public static void setFlagToRender(MonoBehavior mono)
     {
-        CellRenderer rend = (CellRenderer)mono.getComponent(CellRenderer.class);
+        //CellRenderer rend = (CellRenderer)mono.getComponent(CellRenderer.class);
+        EdgeRenderer rend = (EdgeRenderer)mono.getComponent(EdgeRenderer.class);
         renderBatch.add(rend);
     }
 
