@@ -7,7 +7,7 @@ import Engine.Object.MonoBehavior;
  */
 public class Schema extends MonoBehavior {
 
-    IPrototype proto = new FourCellsAsEdgeMonos();
+    IPrototype proto = new IteratedCellsAsEdgeMonos();
     //IPrototype proto = new SegmentedLine();
 
     @Override

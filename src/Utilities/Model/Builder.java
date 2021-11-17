@@ -4,6 +4,7 @@ import Engine.Renderer;
 import Engine.States.State;
 import Model.ApicalConstrictingCell;
 import Model.Cell;
+import Model.EdgeMono;
 import Physics.Rigidbodies.*;
 import Utilities.Geometry.Vector2f;
 import Utilities.Geometry.Vector2i;
@@ -236,8 +237,27 @@ public class Builder {
         return vertices;
     }
 
-    private static void buildCellAsEdgeMono(){
+    public static Cell buildCellAsEdgeMono(List<Node> nodes) throws InstantiationException, IllegalAccessException {
+        List<Edge> edges = new ArrayList<>();
+        Edge e;
+        for(int i =1; i < nodes.size(); i++){
+            Node a = nodes.get(i-1);
+            Node b = nodes.get(i);
+            if(i == 5) {
+                e = new ApicalEdge(a,b);
+            }else if (i == 10){
+                e = new BasalEdge(a,b);
+            }else{
+                e = new LateralEdge(a, b);
+            }
+            edges.add(e);
+            EdgeMono mono = (EdgeMono) State.create(EdgeMono.class);
+            mono.setEdge(e);
+        }
 
+        Cell c = new ApicalConstrictingCell();
+        c.setEdges(edges);
+        return c;
     }
 
     /*private List<Edge> clone(List<Edge> edges){
