@@ -7,8 +7,8 @@ import Engine.Object.MonoBehavior;
  */
 public class Schema extends MonoBehavior {
 
-    IPrototype proto = new IteratedCellsAsEdgeMonos();
-    //IPrototype proto = new SegmentedLine();
+    //IPrototype proto = new IteratedCellsAsEdgeMonos();
+    IPrototype proto = new SegmentedLine();
 
     @Override
     public void awake() throws InstantiationException, IllegalAccessException {
